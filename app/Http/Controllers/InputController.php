@@ -33,9 +33,10 @@ class InputController extends Controller
     public function sendNotification($id)
     {
 
-        $user = new User;
-        $message = 'Notificación';
-        // return $user;
+        $user = new User($id);
+
+        $message = "Notificación a ". $user->getName();
+        
         return $this->service->notify($user, $message);
         
     }

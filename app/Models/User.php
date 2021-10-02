@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+		'id',
         'name',
         'email',
         'password',
@@ -41,4 +42,70 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    
+    public function __construct($id){
+
+		// Array example users
+        $aUsers = array(
+			'0' => array(
+							'id' => 0,
+							'name' => 'Antonio Marquez',
+							'email' => 'amarquez@gmail.com',
+							'password' => '3f1b7ccad63d40a7b4c27dda225bf941',
+						),
+			'1' => array(
+							'id' => 1,
+							'name' => 'Manuel Olmedo',
+							'email' => 'molmedo@hotmail.com',
+							'password' => '96080775c113b0e5c3e32bdd26214aec',
+						),
+			'2' => array(
+							'id' => 2,
+							'name' => 'Isabel Urraca',
+							'email' => 'isurraca@gmail.com',
+							'password' => '5afb9bcb73acf95a28aa35dbd9acdbda',
+						),
+			'3' => array(
+							'id' => 3,
+							'name' => 'Marina Tellez',
+							'email' => 'mtellez@hotmail.com',
+							'password' => 'aa466f29a42582d133bc36c9a227c118',
+						),
+		);
+
+		$this->fillable = $aUsers[$id];
+    }
+
+
+
+	/**
+	 * Getter Id
+	 * 
+	 * @return Int
+	 */
+	public function getId()
+	{
+		return $this->fillable['id'];
+	}
+
+	/**
+	 * Getter name
+	 * 
+	 * @return string
+	 */
+	public function getName()
+	{
+		return $this->fillable['name'];
+	}
+
+	/**
+	 * Getter email
+	 * 
+	 * @return string
+	 */
+	public function getEmail()
+	{
+		return $this->fillable['email'];
+	}
 }

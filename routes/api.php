@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('/users/send_notification/{id}',[InputController::class,'sendNotification']);
+Route::get('/users/send_notification/{id}',[InputController::class,'sendNotification']);
 
 

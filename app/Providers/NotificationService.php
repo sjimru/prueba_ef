@@ -45,8 +45,8 @@ class NotificationService extends ServiceProvider
     public function notify(User $user, $message)
     {
         return Response()->json([
-            'id' => $user->id,
-            'email' => $user->email,
+            'id' => $user->getId(),
+            'email' => $user->getEmail(),
             'message' => $message,
             'result' => $this->app->send('$user->email', $message),
         ]);
