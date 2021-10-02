@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Exceptions\CustomException;
+use App\Exceptions\Handler;
 
 class User extends Authenticatable
 {
@@ -73,8 +75,11 @@ class User extends Authenticatable
 							'password' => 'aa466f29a42582d133bc36c9a227c118',
 						),
 		);
-
-		$this->fillable = $aUsers[$id];
+		try {
+			$this->fillable = $aUsers[$id];
+		} catch (\Throwable $th) {
+			throw new CustomException('204','User does not exist') ;
+		}
     }
 
 

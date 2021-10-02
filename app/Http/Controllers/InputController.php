@@ -24,11 +24,6 @@ class InputController extends Controller
      * 
      * @return JSON
      * 
-     * structure JSON
-     * id: id user 
-     * email: email user 
-     * message: text send message 
-     * result: send result 
      */
     public function sendNotification($id)
     {
@@ -36,8 +31,15 @@ class InputController extends Controller
         $user = new User($id);
 
         $message = "Notificación a ". $user->getName();
-        
-        return $this->service->notify($user, $message);
+
+        $result = $this->service->notify($user, $message);
+
+        return Response()->json([
+            'id' => $user->getId(),
+            'email' => $user->getEmail(),
+            'message' => $message,
+            'result' => $result,
+        ]);
         
     }
 }

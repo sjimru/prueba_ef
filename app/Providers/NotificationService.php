@@ -31,24 +31,14 @@ class NotificationService extends ServiceProvider
         //
     }
 
-        /**
+    /**
      * Send notification
      * 
-     * @return JSON
-     * 
-     * structure JSON
-     * id: id user 
-     * email: email user 
-     * message: text send message 
-     * result: send result 
+     * @return boolean
      */
     public function notify(User $user, $message)
     {
-        return Response()->json([
-            'id' => $user->getId(),
-            'email' => $user->getEmail(),
-            'message' => $message,
-            'result' => $this->app->send('$user->email', $message),
-        ]);
+
+        return $this->app->send($user->getEmail(), $message);
     }
 }
